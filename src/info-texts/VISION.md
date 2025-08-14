@@ -1,0 +1,1 @@
+DisasterSim — a real-time, browser-based disaster-relief simulation that lets users experiment with dynamic resource allocation, morale tracking, and housing logistics to explore how decisions affect outcomes. Built with React + Tailwind, it showcases complex frontend state, UX, and realtime visualization.
