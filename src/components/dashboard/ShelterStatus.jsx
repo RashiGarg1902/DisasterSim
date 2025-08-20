@@ -11,12 +11,12 @@ function ShelterStatus() {
   const [selectedHouse, setSelectedHouse] = useState(null);
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   return (
-    <div className="shelter-status w-full h-fit flex flex-col gap-y-[10px] pt-[10px]">
+    <div className="w-full h-fit flex flex-row gap-y-[10px] pt-[10px]">
       {houseData.map((house) => (
         <div
           key={house.id}
           id={house.houseCount}
-          className="house-status bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl"
+          className="bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl"
         >
           House {house.houseCount}
           <Detail

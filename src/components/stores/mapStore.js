@@ -1,6 +1,7 @@
 import { create } from "zustand";
 let houseCount = 1;
 let buildingCount = 1;
+let waveCount = 1;
 const useMapStore = create((set, get) => ({
   pineTreesPos: [],
   DeciduousTreesPos: [],
@@ -101,6 +102,10 @@ const useMapStore = create((set, get) => ({
     const skipCell = [];
     for (let i = 1; i <= 20; i++) {
       for (let j = 1; j <= 20; j++) {
+        if (i == 1 || j == 1 || i == 19 || j == 19 || i == 18) {
+          plains.push({ x: i, y: j });
+          continue;
+        }
         if (i == 10 && j == 10) continue;
         const prob = Math.floor(Math.random() * 100 + 1);
         if (prob < 2) {
@@ -162,6 +167,8 @@ const useMapStore = create((set, get) => ({
             collectionInProgress: false,
             message: null,
             extraClasses: "",
+            count: waveCount++,
+            interval: null,
           });
         } else if (prob < 14) {
           rentProperties.push({

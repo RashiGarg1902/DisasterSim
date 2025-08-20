@@ -6,11 +6,11 @@ import HoverInfo from "../../ui/HoverInfo";
 function Warehouses() {
   return (
     <>
-      <MapIconWrapper gridCol={10} gridRow={10}>
+      <MapIconWrapper gridCol={10} gridRow={10} rowSpan={2} colSpan={2}>
         <Warehouse
           className={mapIconClass}
-          height={30}
-          width={30}
+          height={60}
+          width={60}
           stroke="#FACC15"
         />
         <HoverInfo name="WareHouse" />

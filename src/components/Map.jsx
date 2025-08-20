@@ -21,8 +21,8 @@ function Map() {
 
   return (
     <div className="map-container bg h-screen flex-1 bg-blue-200 text-black border-right">
-      <h1 className="text-center mb-5 text-gray-500">Map</h1>
-      <div className="map border-all grid grid-cols-20 grid-rows-20 w-[640px] h-[550px] gap-5 overflow-auto scrollable">
+      {/* <h1 className="text-center mb-5 text-gray-500">Map</h1> */}
+      <div className="map grid grid-cols-20 grid-rows-20 w-screen h-[100vh] gap-5 overflow-auto scrollable">
         <Homes></Homes>
         <PineTree></PineTree>
         <Buildings></Buildings>

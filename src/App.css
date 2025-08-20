@@ -28,6 +28,10 @@ body {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+.border-bottom {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 .bg {
   background-color: #4a4a4a;
 }

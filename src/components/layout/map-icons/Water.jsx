@@ -36,40 +36,83 @@ function Water() {
             <HoverInfo classes="!top-[30px]">
               {!wave.collectionInProgress && "Collect Water?"}
               {wave.collectionInProgress && "Stop Collection?"}
+              {console.log(wave.id)}
+              {console.log(typeof wave.id)}
               <ActionIcon
-                onClick={() => {
-                  updateWaves(wave.id, {
+                id={wave.id}
+                onClick={(event) => {
+                  const clickedWave = useMapStore
+                    .getState()
+                    .wavesData.find((waves) => waves.id === event.target.id);
+                  updateWaves(clickedWave.id, {
                     clicked: false,
                   });
-                  if (!wave.collectionInProgress) {
+                  console.log(`event id ${event.target.id}`);
+                  console.log(`type ${typeof event.target.id}`);
+                  console.log(event.target.id === wave.id);
+                  console.log(clickedWave);
+
+                  if (!clickedWave.collectionInProgress) {
                     if (volunteers < 5)
-                      updateWaves(wave.id, {
+                      updateWaves(clickedWave.id, {
                         message: "Not enough volunteers!",
                       });
                     else {
                       removeVolunteers(5);
-                      updateWaves(wave.id, { collectionInProgress: true });
-                      setInter(
-                        setInterval(() => {
-                          const thisWave = useMapStore
-                            .getState()
-                            .wavesData.find((waves) => waves.id === wave.id);
-                          if (!thisWave || thisWave.waterReserves <= 0) {
-                            clearInterval(inter);
-                            if (thisWave) removeWave(thisWave.id);
-                          }
-
-                          updateWaves(thisWave.id, {
-                            waterReserves: thisWave.waterReserves - 1,
-                          });
-                          addWater(1);
-                        }, 200)
+                      updateWaves(clickedWave.id, {
+                        collectionInProgress: true,
+                      });
+                      console.log(
+                        `Collection started for reserve ${wave.count}`
                       );
+                      updateWaves(clickedWave.id, {
+                        interval: setInter(
+                          setInterval(() => {
+                            const thisWave = useMapStore
+                              .getState()
+                              .wavesData.find(
+                                (waves) => waves.id === clickedWave.id
+                              );
+                            if (!thisWave || thisWave.waterReserves <= 0) {
+                              clearInterval(inter);
+                              if (thisWave) removeWave(thisWave.id);
+                            }
+
+                            updateWaves(thisWave.id, {
+                              waterReserves: thisWave.waterReserves - 1,
+                            });
+                            addWater(1);
+                          }, 200)
+                        ),
+                      });
+                      // setInter(
+                      //   setInterval(() => {
+                      //     const thisWave = useMapStore
+                      //       .getState()
+                      //       .wavesData.find((waves) => waves.id === clickedWave.id);
+                      //     if (!thisWave || thisWave.waterReserves <= 0) {
+                      //       clearInterval(inter);
+                      //       if (thisWave) removeWave(thisWave.id);
+                      //     }
+
+                      //     updateWaves(thisWave.id, {
+                      //       waterReserves: thisWave.waterReserves - 1,
+                      //     });
+                      //     addWater(1);
+                      //   }, 200)
+                      // );
                     }
                   } else {
+                    console.log(
+                      `Collection is being stopped for reserve ${wave.count}`
+                    );
+
                     addVolunteers(5);
-                    clearInterval(inter);
-                    updateWaves(wave.id, { collectionInProgress: false });
+                    clearInterval(clickedWave.interval);
+                    // clearInterval(inter);
+                    updateWaves(clickedWave.id, {
+                      collectionInProgress: false,
+                    });
                   }
                 }}
               />

@@ -1,0 +1,4 @@
+feat(ui): redesign layout for disaster simulation app
+
+Implemented a pop-up structure for the dashboard.
+Preserved original logic but reorganized UI for improved clarity.
