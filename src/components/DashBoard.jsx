@@ -131,7 +131,7 @@ function DashBoard() {
           </button>
         </div>
         {showDashboard && (
-          <div className="flex w-fit h-fit items-stretch max-h-[calc(100vh-200px)] bg-gray-700 rounded-[10px] m-[10px] ml-[20px] mb-[20px] pt-[2px] pb-[2px] p-[10px] overflow-auto scrollable">
+          <div className="flex w-full max-w-[100vw] bg-gray-700 rounded-[10px] m-[10px] pt-[2px] pb-[2px] p-[10px] scrollable">
             <ShelterStatus />
             <ResourceDepletor />
           </div>

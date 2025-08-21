@@ -11,14 +11,14 @@ function ShelterStatus() {
   const [selectedHouse, setSelectedHouse] = useState(null);
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   return (
-    <div className="w-full h-fit flex flex-row gap-y-[10px] pt-[10px]">
+    <div className="w-full items-start flex flex-row gap-x-[10px] pt-[10px]">
       {houseData.map((house) => (
         <div
           key={house.id}
           id={house.houseCount}
-          className="bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl"
+          className="h-fit bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl grid grid-rows-[repeat(5,40px)]"
         >
-          House {house.houseCount}
+          <p>House {house.houseCount}</p>
           <Detail
             item1="Food"
             amount1={house.food}
@@ -26,6 +26,7 @@ function ShelterStatus() {
             item2="Water"
             amount2={house.water}
             total2={house.totalWater}
+            classes="row-start-2"
           />
           <Detail
             item1="Kits"
@@ -34,6 +35,7 @@ function ShelterStatus() {
             item2="Fuel"
             amount2={house.fuel}
             total2={house.totalFuel}
+            classes="row-start-3"
           />
           <Detail
             item1="Residents"
@@ -42,10 +44,11 @@ function ShelterStatus() {
             item2="Volunteers"
             amount2={house.volunteers}
             total2={house.totalVolunteers}
+            classes="row-start-4"
           />
           {!assignClicked && (
             <GrayButton
-              // classes="assign-resources-button"
+              classes="row-start-5"
               onClick={(event) => {
                 setAssignClicked(true);
                 setSelectedHouse(house.houseCount);
@@ -73,7 +76,7 @@ function ShelterStatus() {
       {buildingData.map((building) => (
         <div
           key={building.id}
-          className="building-status bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl"
+          className="building-status bg-slate-500 rounded-[10px] py-[2px] text-slate-300 text-xl grid grid-rows-[repeat(5,40px)]"
         >
           Building {building.buildingCount}
           <Detail
@@ -83,6 +86,7 @@ function ShelterStatus() {
             item2="Water"
             amount2={building.water}
             total2={building.totalWater}
+            classes="row-start-2"
           />
           <Detail
             item1="Kits"
@@ -91,6 +95,7 @@ function ShelterStatus() {
             item2="Fuel"
             amount2={building.fuel}
             total2={building.totalFuel}
+            classes="row-start-3"
           />
           <Detail
             item1="Residents"
@@ -99,8 +104,10 @@ function ShelterStatus() {
             item2="Volunteers"
             amount2={building.volunteers}
             total2={building.totalVolunteers}
+            classes="row-start-4"
           />
           <GrayButton
+            classes="row-start-5"
             onClick={() => {
               setAssignClicked(true);
               setSelectedBuilding(building.buildingCount);
